@@ -1,4 +1,6 @@
 from .multiarmedbandit import MultiArmedBandit
+from .update_rules import constant_update_rule
+from .action_selections import greedy_action
 
 
 class GreedyConstantStepsize(MultiArmedBandit):
@@ -7,8 +9,8 @@ class GreedyConstantStepsize(MultiArmedBandit):
         self.alpha = alpha
 
     def _update_rule(self, q, r, a):
-        return q + self.alpha * (r - q)
+        return constant_update_rule(self, q, r, a)
 
     def _action_selection(self):
-        return self.dictmax(self.Qs)
+        return greedy_action(self)
 

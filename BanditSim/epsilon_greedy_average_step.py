@@ -1,4 +1,6 @@
 from .multiarmedbandit import MultiArmedBandit
+from .action_selections import epsilon_greedy_action
+from .update_rules import average_update_rule
 
 
 class EpsilonGreedyAverageStep(MultiArmedBandit):
@@ -7,10 +9,7 @@ class EpsilonGreedyAverageStep(MultiArmedBandit):
         self.epsilon = epsilon
 
     def _update_rule(self, q, r, a):
-        return q + (r-q)/self.record.counts[a]
+        return average_update_rule(self, q, r, a)
 
     def _action_selection(self):
-        if self.randgen.random() > self.epsilon:
-            return self.dictmax(self.Qs)
-        return self.randgen.choice(list(self.levers.keys()))
-
+        return epsilon_greedy_action(self)

@@ -1,4 +1,6 @@
 from .multiarmedbandit import MultiArmedBandit
+from .update_rules import constant_update_rule
+from .action_selections import epsilon_greedy_action
 
 
 class EpsilonGreedyConstantStepsize(MultiArmedBandit):
@@ -8,9 +10,7 @@ class EpsilonGreedyConstantStepsize(MultiArmedBandit):
         self.epsilon = epsilon
 
     def _update_rule(self, q, r, a):
-        return q + self.alpha * (r - q)
+        return constant_update_rule(self, q, r, a)
 
     def _action_selection(self):
-        if self.randgen.random() > self.epsilon:
-            return self.dictmax(self.Qs)
-        return self.randgen.choice(list(self.levers.keys()))
+        return epsilon_greedy_action(self)

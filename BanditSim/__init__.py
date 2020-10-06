@@ -4,6 +4,7 @@ from .eps_greedy_constant_stepsize import EpsilonGreedyConstantStepsize
 from .greedy_constant_stepsize import GreedyConstantStepsize
 from .epsilon_greedy_average_step import EpsilonGreedyAverageStep
 from .greedy_average_step import GreedyAverageStep
-
+from .greedy_bayes_update import GreedyBayesianUpdate
+from .eps_greedy_bayes_update import EpsilonGreedyBayesianUpdate
 
 

@@ -22,11 +22,6 @@ class MultiArmedBandit(ABC):
         self.seed    = seed
         self.randgen = random.Random(seed)
 
-    @staticmethod
-    def dictmax(d):
-        """ returns key with maximum value in dictionary """
-        return max(d.keys(), key = lambda x: d[x])
-
     @abstractmethod
     def _update_rule(self, q, r, a):
         pass
